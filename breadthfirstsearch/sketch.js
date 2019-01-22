@@ -60,7 +60,7 @@ function bfs() {
 
   while (queue.length > 0) {
     let current = queue.shift(); // remove the first value from the queue array
-    //console.log(current);
+
     if (current == end) {
       path.push(current);
       let next = current.parent;
