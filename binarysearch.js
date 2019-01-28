@@ -11,10 +11,10 @@ binary_search_1 = function(arr, val) {
 		return mid; //return the index of the val
 	}
 	else if (arr[mid] > val){
-		return binary_search(arr.slice(0, mid), val);
+		return binary_search_1(arr.slice(0, mid), val);
 	}
 	else {
-		return binary_search(arr.slice(mid), val);
+		return binary_search_1(arr.slice(mid), val);
 	}
 }
 
@@ -27,12 +27,13 @@ binary_search_2 = function(arr, val, start, end) {
         if (val == arr[mid]) {
             return mid;
         } else if (val > arr[mid]) {
-            return search(arr, val, mid+1, end);
+            return binary_search_2 (arr, val, mid+1, end);
         }else {
-            return search(arr, val, start, mid-1);
+            return binary_search_2 (arr, val, start, mid-1);
         }
     }
 };
 
-console.log(search(['ant', 'bison', 'camel', 'duck', 'elephant'], 'pikachu', 0, 4))
+console.log(binary_search_2(['ant', 'bison', 'camel', 'duck', 'elephant'], 'pikachu', 0, 4))
+console.log(binary_search_1(['ant', 'bison', 'camel', 'duck', 'elephant'], 'pikachu', 0, 4))
 

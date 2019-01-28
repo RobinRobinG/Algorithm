@@ -21,7 +21,7 @@ prefix_calculator = function(string) {
         let current_number1 = number_stack.pop();
         let current_number2 = number_stack.pop();
         number_stack.push(operator[current_operator](parseInt(current_number2), parseInt(current_number1)));
-        count = 1;
+        count ++;
       }
     }
   }
