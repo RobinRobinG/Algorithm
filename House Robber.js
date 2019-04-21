@@ -21,3 +21,53 @@ var rob = function(nums) {
     }
 };
 
+// Dy
+function maxSubsetSum(arr) {
+    let inclusive = 0;
+    let exclusive = 0;
+    for (let i = 0; i < arr.length; i++) {
+        let temp = inclusive;
+        inclusive = Math.max(inclusive, exclusive + arr[i]);
+        exclusive = temp;
+    }
+    return inclusive;
+}
+
+// try again
+function maxSubsetSum(arr) {
+    let sumArr = [];
+    let n = arr.length;
+    sumArr[0] = Math.max(0, arr[0]);
+    if (arr.length == 1) {
+        return sumArr[0];
+    }
+    sumArr[1] = Math.max(sumArr[0], arr[1]);
+    for (let i = 2; i < arr.length; i++) {
+        sumArr[i] = Math.max(sumArr[i - 2], sumArr[i - 1], sumArr[i - 2] + arr[i]);
+    }
+    console.log(sumArr);
+    return sumArr[n - 1];
+}
+
+// Complete the candies function below.
+function candies(n, arr) {
+    let candies = [];
+    let sum = 0;
+    candies[0] = 1;
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > arr[i - 1]) {
+            candies[i] = candies[i - 1] + 1;
+        } else {
+            candies[i] = 1;
+        }
+    }
+    for (let i = arr.length - 2; i >= 0; i--) {
+        if (arr[i] > arr[i + 1] && candies[i] == candies[i + 1]) {
+            candies[i] = candies[i + 1] + 1;
+        }
+    }
+    for (let i = 0; i < candies.length; i++) {
+        sum += candies[i];
+    }
+    return sum;
+}
